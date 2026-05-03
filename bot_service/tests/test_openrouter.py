@@ -1,4 +1,3 @@
-"""Интеграционный тест клиента OpenRouter."""
 import pytest
 import respx
 from httpx import Response

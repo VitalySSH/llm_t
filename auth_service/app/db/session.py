@@ -1,4 +1,3 @@
-"""Async-сессия SQLAlchemy."""
 from sqlalchemy.ext.asyncio import (
     AsyncSession,
     async_sessionmaker,

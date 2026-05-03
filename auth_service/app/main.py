@@ -1,4 +1,3 @@
-"""Точка входа auth-сервиса."""
 from contextlib import asynccontextmanager
 
 from fastapi import FastAPI

@@ -1,4 +1,3 @@
-"""Бизнес-логика auth-сервиса."""
 from app.core.exceptions import (
     InvalidCredentialsError,
     UserAlreadyExistsError,

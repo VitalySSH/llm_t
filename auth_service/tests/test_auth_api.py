@@ -1,4 +1,3 @@
-"""Интеграционные тесты auth-эндпоинтов."""
 import pytest
 
 EMAIL = "sharonov@email.com"

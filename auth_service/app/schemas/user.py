@@ -1,4 +1,3 @@
-"""Публичные схемы пользователя."""
 from datetime import datetime
 
 from pydantic import BaseModel, ConfigDict, EmailStr

@@ -1,4 +1,3 @@
-"""Celery-задачи."""
 import asyncio
 
 from aiogram import Bot

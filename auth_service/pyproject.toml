@@ -1,7 +1,7 @@
 [project]
 name = "auth-service"
 version = "0.1.0"
-description = "Auth service: registration + JWT issuing"
+description = "Auth service"
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.112.0",

@@ -1,7 +1,7 @@
 [project]
 name = "bot-service"
 version = "0.1.0"
-description = "Telegram bot service with JWT auth, Celery, RabbitMQ, Redis, OpenRouter"
+description = "Telegram bot service"
 requires-python = ">=3.11"
 dependencies = [
   "fastapi>=0.112.0",

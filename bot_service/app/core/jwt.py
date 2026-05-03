@@ -1,4 +1,3 @@
-"""Валидация JWT в bot-сервисе."""
 from jose import ExpiredSignatureError, JWTError, jwt
 
 from app.core.config import settings

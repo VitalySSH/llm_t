@@ -1,4 +1,3 @@
-"""Тесты Telegram-хэндлеров."""
 from datetime import datetime, timedelta, timezone
 from unittest.mock import AsyncMock, MagicMock
 

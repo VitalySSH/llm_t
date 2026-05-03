@@ -1,4 +1,3 @@
-"""Тесты валидации JWT."""
 from datetime import datetime, timedelta, timezone
 
 import pytest

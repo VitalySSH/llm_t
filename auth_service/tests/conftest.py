@@ -1,4 +1,3 @@
-"""Фикстуры для тестов auth-сервиса."""
 import pytest_asyncio
 from httpx import ASGITransport, AsyncClient
 from sqlalchemy.ext.asyncio import (

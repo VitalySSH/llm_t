@@ -1,4 +1,3 @@
-"""Фикстуры для тестов bot-сервиса."""
 import fakeredis.aioredis
 import pytest_asyncio
 

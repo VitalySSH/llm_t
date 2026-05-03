@@ -1,4 +1,3 @@
-"""Настройки bot-сервиса."""
 from pydantic_settings import BaseSettings, SettingsConfigDict
 
 

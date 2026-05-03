@@ -1,4 +1,3 @@
-"""Redis-клиент."""
 from redis.asyncio import Redis
 
 from app.core.config import settings

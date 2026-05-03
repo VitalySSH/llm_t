@@ -1,4 +1,3 @@
-"""Сборка aiogram-диспетчера."""
 from aiogram import Bot, Dispatcher
 
 from app.bot import handlers

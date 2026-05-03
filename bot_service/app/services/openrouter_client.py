@@ -1,4 +1,3 @@
-"""Клиент OpenRouter."""
 import httpx
 
 from app.core.config import settings

@@ -1,4 +1,3 @@
-"""Запуск polling aiogram."""
 import asyncio
 
 from app.bot.dispatcher import build_bot_and_dispatcher

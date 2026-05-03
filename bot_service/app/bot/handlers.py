@@ -1,4 +1,3 @@
-"""Хэндлеры Telegram."""
 from aiogram import F, Router
 from aiogram.filters import Command, CommandObject
 from aiogram.types import Message

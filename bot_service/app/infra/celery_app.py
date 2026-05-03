@@ -1,4 +1,3 @@
-"""Celery-приложение."""
 from celery import Celery
 
 from app.core.config import settings

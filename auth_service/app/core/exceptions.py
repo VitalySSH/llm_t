@@ -1,9 +1,8 @@
-"""HTTP-исключения auth-сервиса."""
 from fastapi import HTTPException
 
 
 class BaseHTTPException(HTTPException):
-    """База для своих HTTP-исключений."""
+    """Базовый класс для своих HTTP-исключений."""
 
     status_code = 500
     detail = "internal error"

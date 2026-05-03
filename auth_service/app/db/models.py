@@ -1,4 +1,3 @@
-"""ORM-модели auth-сервиса."""
 from datetime import datetime
 
 from sqlalchemy import DateTime, String, func
@@ -8,7 +7,7 @@ from app.db.base import Base
 
 
 class User(Base):
-    """Пользователь системы."""
+    """Пользователь"""
 
     __tablename__ = "users"
 

@@ -1,4 +1,3 @@
-"""Зависимости FastAPI."""
 from typing import AsyncGenerator
 
 from fastapi import Depends

@@ -1,4 +1,3 @@
-"""Схемы регистрации и токенов."""
 from pydantic import BaseModel, EmailStr
 
 

@@ -2,7 +2,7 @@
 
 Два независимых сервиса в одном репозитории:
 
-- **Auth Service** (FastAPI) — регистрация, логин, выпуск JWT.
+- **Auth Service** (FastAPI) — регистрация, логин, генерация JWT.
 - **Bot Service** (aiogram + Celery) — Telegram-бот, который
   принимает запросы пользователя, проверяет JWT и через очередь
   RabbitMQ отправляет их в LLM (OpenRouter).
@@ -23,7 +23,7 @@ pytest.
 ## Структура
 
 ```
-final_project_2/
+llm_t/
 ├── docker-compose.yml      # вся система: инфра + сервисы
 ├── auth_service/           # FastAPI: /auth/register, /login, /me
 └── bot_service/            # aiogram + celery + fastapi /health
@@ -37,15 +37,6 @@ final_project_2/
 - `OPENROUTER_API_KEY` — ключ OpenRouter.
 
 `JWT_SECRET` должен быть одинаковым в обоих `.env`.
-
-Зависимости подтягиваются внутри docker-образов автоматически.
-Для локального запуска тестов также нужен `uv sync` в каждом
-сервисе:
-
-```bash
-cd auth_service && uv sync && cd ..
-cd bot_service  && uv sync && cd ..
-```
 
 ## Запуск
 

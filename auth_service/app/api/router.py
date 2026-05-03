@@ -1,4 +1,3 @@
-"""Сборка роутеров."""
 from fastapi import APIRouter
 
 from app.api import routes_auth
