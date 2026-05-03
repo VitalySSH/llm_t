@@ -107,7 +107,7 @@ dev-dependencies = []
 ```dotenv
 APP_NAME=auth-service
 ENV=local
-JWT_SECRET=change_me_super_secret
+JWT_SECRET=fake_secret
 JWT_ALG=HS256
 ACCESS_TOKEN_EXPIRE_MINUTES=60
 SQLITE_PATH=./auth.db
@@ -178,7 +178,7 @@ dev-dependencies = []
 APP_NAME=bot-service
 ENV=local
 TELEGRAM_BOT_TOKEN=
-JWT_SECRET=change_me_super_secret
+JWT_SECRET=fake_secret
 JWT_ALG=HS256
 REDIS_URL=redis://redis:6379/0
 RABBITMQ_URL=amqp://guest:guest@rabbitmq:5672//

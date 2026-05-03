@@ -1,6 +1,6 @@
 # Двухсервисная система LLM-консультаций
 
-Учебный проект. Два независимых сервиса в одном репозитории:
+Два независимых сервиса в одном репозитории:
 
 - **Auth Service** (FastAPI) — регистрация, логин, выпуск JWT.
 - **Bot Service** (aiogram + Celery) — Telegram-бот, который
@@ -8,22 +8,6 @@
   RabbitMQ отправляет их в LLM (OpenRouter).
 
 ## Архитектура
-
-```
-TG user
-   │
-   ▼
-aiogram handler ──► JWT (Redis + jose)
-   │                      │
-   │                      └─► отказ, если нет/невалидный
-   │
-   └─► llm_request.delay() ──► RabbitMQ ──► Celery worker
-                                                │
-                                                ├─► OpenRouter
-                                                │
-                                                └─► Bot.send_message
-```
-
 - JWT создаётся **только** в Auth Service.
 - Bot Service токен только проверяет (общий `JWT_SECRET`).
 - Запрос к LLM выполняется в Celery-воркере, не в хэндлере.
@@ -32,7 +16,7 @@ aiogram handler ──► JWT (Redis + jose)
 
 ## Стек
 
-Python 3.11, uv, FastAPI, SQLAlchemy (async, SQLite), aiogram,
+Python 3.13, uv, FastAPI, SQLAlchemy (async, SQLite), aiogram,
 Celery, RabbitMQ, Redis, httpx, python-jose, passlib (bcrypt),
 pytest.
 
@@ -57,13 +41,11 @@ cd bot_service && uv sync && cd ..
 - `TELEGRAM_BOT_TOKEN` — токен бота от @BotFather.
 - `OPENROUTER_API_KEY` — ключ OpenRouter.
 
-`JWT_SECRET` должен быть **одинаковым** в обоих `.env`.
-
 ## Запуск
 
 1. Инфра:
    ```bash
-   docker-compose up -d
+   docker compose up -d
    ```
 2. Auth Service:
    ```bash
@@ -86,9 +68,6 @@ cd bot_service && uv sync && cd ..
    uv run uvicorn app.main:app --host 0.0.0.0 --port 8001
    ```
 
-> При локальном запуске вне Docker замените в `bot_service/.env`
-> хосты `redis` и `rabbitmq` на `localhost`.
-
 ## Сценарий пользователя
 
 1. Открыть Swagger Auth: `http://localhost:8000/docs`.
@@ -101,7 +80,7 @@ cd bot_service && uv sync && cd ..
 7. Celery-воркер получает задачу, ходит в OpenRouter и присылает
    ответ от LLM в чат.
 
-Без токена бот отказывает в обслуживании и просит пройти
+Без токена бот отказывает в обработке запроса и просит пройти
 авторизацию.
 
 ## Тесты
@@ -125,4 +104,5 @@ cd bot_service && uv run pytest -v
 - `rabbitmq_queues.png` — интерфейс RabbitMQ
   (`http://localhost:15672`, guest/guest), активные очереди и
   consumers.
-- `tests_passed.png` — зелёные `pytest` обоих сервисов.
+- `auth_service_tests.png` — тесты сервиса авторизации.
+- `bot_service_tests.png` — тесты бота.
