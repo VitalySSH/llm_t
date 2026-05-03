@@ -1,0 +1,39 @@
+"""Репозиторий пользователей."""
+from sqlalchemy import select
+from sqlalchemy.ext.asyncio import AsyncSession
+
+from app.db.models import User
+
+
+class UsersRepository:
+    """Доступ к таблице пользователей."""
+
+    def __init__(self, session: AsyncSession) -> None:
+        self.session = session
+
+    async def get_by_id(self, user_id: int) -> User | None:
+        """Найти по id."""
+        return await self.session.get(User, user_id)
+
+    async def get_by_email(self, email: str) -> User | None:
+        """Найти по email."""
+        stmt = select(User).where(User.email == email)
+        res = await self.session.execute(stmt)
+        return res.scalar_one_or_none()
+
+    async def create(
+        self,
+        email: str,
+        password_hash: str,
+        role: str = "user",
+    ) -> User:
+        """Создать пользователя."""
+        user = User(
+            email=email,
+            password_hash=password_hash,
+            role=role,
+        )
+        self.session.add(user)
+        await self.session.commit()
+        await self.session.refresh(user)
+        return user
