@@ -94,28 +94,28 @@ cd bot_service && uv run pytest -v
 
 ### Регистрация пользователя
 
-![Регистрация](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/swagger_register.png)
+![Регистрация](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/swagger_register.png)
 
 ### Выдача JWT
 
-![Выдача JWT](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/swagger_login.png)
+![Выдача JWT](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/swagger_login.png)
 
 ### Профиль по токену (`/auth/me`)
 
-![Профиль по токену](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/swagger_me.png)
+![Профиль по токену](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/swagger_me.png)
 
 ### Переписка с Telegram-ботом
 
-![Чат с ботом](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/telegram_chat.png)
+![Чат с ботом](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/telegram_chat.png)
 
 ### Очередь RabbitMQ
 
-![Интерфейс RabbitMQ](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/rabbitmq_queues.png)
+![Интерфейс RabbitMQ](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/rabbitmq_queues.png)
 
 ### Тесты Auth Service
 
-![Тесты сервиса авторизации](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/auth_service_tests.png)
+![Тесты сервиса авторизации](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/auth_service_tests.png)
 
 ### Тесты Bot Service
 
-![Тесты бота](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/bot_service_tests.png)
+![Тесты бота](https://github.com/VitalySSH/llm_t/blob/main/docs/screenshots/bot_service_tests.png)
