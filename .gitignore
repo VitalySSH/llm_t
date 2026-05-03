@@ -1,0 +1,15 @@
+# python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+.pytest_cache/
+
+# окружение и бд
+*.db
+
+# ide и os
+.idea/
+.vscode/
+.DS_Store
+.claude/
