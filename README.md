@@ -24,49 +24,46 @@ pytest.
 
 ```
 final_project_2/
-├── docker-compose.yml      # rabbitmq + redis
+├── docker-compose.yml      # вся система: инфра + сервисы
 ├── auth_service/           # FastAPI: /auth/register, /login, /me
 └── bot_service/            # aiogram + celery + fastapi /health
 ```
 
 ## Установка
 
-```bash
-cd auth_service && uv sync && cd ..
-cd bot_service && uv sync && cd ..
-```
-
 Заполнить `bot_service/.env`:
 
 - `TELEGRAM_BOT_TOKEN` — токен бота от @BotFather.
 - `OPENROUTER_API_KEY` — ключ OpenRouter.
 
+`JWT_SECRET` должен быть одинаковым в обоих `.env`.
+
+Зависимости подтягиваются внутри docker-образов автоматически.
+Для локального запуска тестов также нужен `uv sync` в каждом
+сервисе:
+
+```bash
+cd auth_service && uv sync && cd ..
+cd bot_service  && uv sync && cd ..
+```
+
 ## Запуск
 
-1. Инфра:
-   ```bash
-   docker compose up -d
-   ```
-2. Auth Service:
-   ```bash
-   cd auth_service
-   uv run uvicorn app.main:app --host 0.0.0.0 --port 8000
-   ```
-3. Celery worker:
-   ```bash
-   cd bot_service
-   uv run celery -A app.infra.celery_app:celery_app worker --loglevel=info
-   ```
-4. Telegram polling:
-   ```bash
-   cd bot_service
-   uv run python -m app.bot.runner
-   ```
-5. (опционально) FastAPI bot-сервиса:
-   ```bash
-   cd bot_service
-   uv run uvicorn app.main:app --host 0.0.0.0 --port 8001
-   ```
+Все сервисы поднимаются одной командой из корня репозитория:
+
+```bash
+docker compose up -d --build
+```
+
+Поднимается 6 контейнеров:
+
+- `rabbitmq` — брокер Celery (5672, веб-интерфейс на 15672)
+- `redis` — backend Celery и хранилище токенов (6379)
+- `auth` — Auth Service на `http://localhost:8000`
+- `bot-api` — FastAPI бот-сервиса на `http://localhost:8001`
+- `bot-worker` — Celery-воркер с задачей `llm_request`
+- `bot-polling` — aiogram polling
+```
 
 ## Сценарий пользователя
 
@@ -95,14 +92,30 @@ cd bot_service && uv run pytest -v
 
 ## Скриншоты
 
-Папка `docs/screenshots/`:
+### Регистрация пользователя
 
-- `swagger_register.png` — успешная регистрация.
-- `swagger_login.png` — выдача JWT.
-- `swagger_me.png` — `/auth/me` с Bearer.
-- `telegram_chat.png` — `/token` и переписка с ботом.
-- `rabbitmq_queues.png` — интерфейс RabbitMQ
-  (`http://localhost:15672`, guest/guest), активные очереди и
-  consumers.
-- `auth_service_tests.png` — тесты сервиса авторизации.
-- `bot_service_tests.png` — тесты бота.
+![Регистрация](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/swagger_register.png)
+
+### Выдача JWT
+
+![Выдача JWT](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/swagger_login.png)
+
+### Профиль по токену (`/auth/me`)
+
+![Профиль по токену](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/swagger_me.png)
+
+### Переписка с Telegram-ботом
+
+![Чат с ботом](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/telegram_chat.png)
+
+### Очередь RabbitMQ
+
+![Интерфейс RabbitMQ](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/rabbitmq_queues.png)
+
+### Тесты Auth Service
+
+![Тесты сервиса авторизации](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/auth_service_tests.png)
+
+### Тесты Bot Service
+
+![Тесты бота](https://github.com/VitalySSH/llm-t/blob/main/docs/screenshots/bot_service_tests.png)
