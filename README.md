@@ -54,7 +54,6 @@ docker compose up -d --build
 - `bot-api` — FastAPI бот-сервиса на `http://localhost:8001`
 - `bot-worker` — Celery-воркер с задачей `llm_request`
 - `bot-polling` — aiogram polling
-```
 
 ## Сценарий пользователя
 
@@ -67,9 +66,6 @@ docker compose up -d --build
    и отвечает «запрос принят, ожидайте ответа».
 7. Celery-воркер получает задачу, ходит в OpenRouter и присылает
    ответ от LLM в чат.
-
-Без токена бот отказывает в обработке запроса и просит пройти
-авторизацию.
 
 ## Тесты
 
